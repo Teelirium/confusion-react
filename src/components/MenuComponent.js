@@ -51,15 +51,15 @@ class Menu extends Component {
             // cus unqiue html etc
             return (
                 <div key={dish.id} className="col-12 mt-5">
-                    <Media tag="li">
-                        <Media left middle>
-                            <Media object src={dish.image} alt={dish.name} />
-                        </Media>
-                        <Media body className="ml-5">
-                            <Media heading>{dish.name}</Media>
+                    <div tag="li" className="d-flex">
+                        <div className="flex-shrink-0">
+                            <img object src={dish.image} alt={dish.name} />
+                        </div>
+                        <div body className="flex-grow-1 ms-5">
+                            <h4 heading>{dish.name}</h4>
                             <p>{dish.description}</p>
-                        </Media>
-                    </Media>
+                        </div>
+                    </div>
                 </div>
             );
         });

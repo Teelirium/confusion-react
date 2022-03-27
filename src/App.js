@@ -22,7 +22,7 @@ class App extends Component {
           </div>
         </Navbar>
         <div className='container text-center'>
-          <div className='col-2 offset-5'>
+          <div className='col-4 offset-5'>
             This is honestly pretty epic
           </div>
         </div>

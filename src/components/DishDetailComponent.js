@@ -1,6 +1,6 @@
 import { Card, CardBody, CardImg, CardText, CardTitle } from "reactstrap";
 
-function DishComments({comments}) {
+function CommentSection({comments}) {
     if (!comments) return (<div></div>);
     const commentSection = comments.map(comment => {
         const date = new Date(Date.parse(comment.date));
@@ -40,7 +40,7 @@ function DishDetail({ dish }) {
                         </CardBody>
                     </Card>
                 </div>
-                <DishComments comments={dish.comments} />
+                <CommentSection comments={dish.comments} />
             </div>
         </div>
     );

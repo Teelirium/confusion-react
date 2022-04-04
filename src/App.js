@@ -1,17 +1,11 @@
-import { Navbar, NavbarBrand } from 'reactstrap';
 import './App.css';
 import Main from './components/MainComponent';
-import { DISHES } from './shared/dishes';
-import React, { Component } from 'react';
+import React from 'react';
 
-class App extends Component {
-  render() {
+function App() {
     return (
-      <div>
-        <Main />
-      </div>
+      <Main />
     );
-  }
 }
 
 export default App;

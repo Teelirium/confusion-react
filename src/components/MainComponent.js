@@ -35,7 +35,7 @@ class Main extends Component {
                 dishes={this.state.dishes} onClick={(dishId) => {this.onDishSelect(dishId)}} 
                 />
                 <DishDetail 
-                dish={this.state.dishes.filter((dish) => dish.id == this.state.selectedDishId)[0]} 
+                dish={this.state.dishes.filter((dish) => dish.id === this.state.selectedDishId)[0]} 
                 />
             </div>
         );

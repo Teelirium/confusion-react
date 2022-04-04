@@ -9,7 +9,7 @@ function CommentSection({ comments }) {
         const dateFormat = {
             year: 'numeric',
             month: 'short',
-            day: '2-digit'
+            day: '2-digit',
         };
         return (
             <div className="mb-4" key={comment.id}>

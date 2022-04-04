@@ -4,6 +4,8 @@ import DishDetail from "./DishDetailComponent";
 import { DISHES } from '../shared/dishes';
 import Header from './HeaderComponent';
 import Footer from './FooterComponent';
+import Home from './HomeComponent';
+import { Route, Routes, Navigate } from 'react-router-dom';
 
 class Main extends Component {
     constructor(props) {
@@ -15,15 +17,27 @@ class Main extends Component {
         };
       }
 
-    onDishSelect(dishId) {
-        this.setState({selectedDishId: dishId});
-    }   
-
     render() {
+        function HomePage() {
+            return (
+                <Home/>
+            );
+        }
+
         return (
             <div>
-                <Header />
-                <div className='container text-center'>
+                <Header/>
+                <Routes>
+                    <Route path='home' element={<HomePage/>}/>
+                    <Route exact path='menu' element={<Menu dishes={this.state.dishes}/>}/>
+                    <Route path="*" element={<Navigate to="home"/>}/>
+                </Routes>
+                <Footer/>
+            </div>
+        );
+    }
+    /*
+                    <div className='container text-center'>
                     <div className='col-4 offset-5'>
                     This is honestly pretty epic
                     </div>
@@ -34,10 +48,7 @@ class Main extends Component {
                 <DishDetail 
                 dish={this.state.dishes.filter((dish) => dish.id === this.state.selectedDishId)[0]} 
                 />
-                <Footer />
-            </div>
-        );
-    }
+                */
 }
 
 export default Main;

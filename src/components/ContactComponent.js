@@ -5,7 +5,7 @@ import { Control, LocalForm, Errors } from 'react-redux-form';
 
 const required = val => val && val.length;
 const maxLength = len => val => !val || (val.length <= len);
-const minLength = len => val => val && val.length >= len;
+const minLength = len => val => val && val.length > len;
 const isNumber = val => !isNaN(+val);
 const validEmail = val => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
 
@@ -86,7 +86,7 @@ class Contact extends Component {
                                         messages={{
                                             required: 'Required ',   
                                             minLength: 'Must be longer than 2 characters ',
-                                            maxLength: 'Must be 15 characters or fewer ',
+                                            maxLength: 'Must be 15 characters or shorter ',
                                         }}
                                     /> 
                                 </Col>
@@ -109,7 +109,7 @@ class Contact extends Component {
                                         messages={{
                                             required: 'Required ',   
                                             minLength: 'Must be longer than 2 characters ',
-                                            maxLength: 'Must be 15 characters or fewer ',
+                                            maxLength: 'Must be 15 characters or shorter ',
                                         }}
                                     /> 
                                 </Col>
@@ -133,7 +133,7 @@ class Contact extends Component {
                                         messages={{
                                             required: 'Required ',   
                                             minLength: 'Must be longer than 2 digits ',
-                                            maxLength: 'Must be 15 digits or fewer ',
+                                            maxLength: 'Must be 15 digits or shorter ',
                                             isNumber: 'Must only contain digits ',
                                         }}
                                     /> 

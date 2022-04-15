@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
-import { Route, Switch, Redirect, useParams } from 'react-router-dom';
-import { withRouter } from 'react-router';
-import Header from './HeaderComponent';
-import Footer from './FooterComponent';
-import Home from './HomeComponent';
-import Contact from './ContactComponent';
-import Menu from './MenuComponent';
-import DishDetail from './DishDetailComponent';
-import About from './AboutComponent';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
+import { Redirect, Route, Switch, useParams } from 'react-router-dom';
+import { addComment } from '../redux/ActionCreators';
+import About from './AboutComponent';
+import Contact from './ContactComponent';
+import DishDetail from './DishDetailComponent';
+import Footer from './FooterComponent';
+import Header from './HeaderComponent';
+import Home from './HomeComponent';
+import Menu from './MenuComponent';
 
 const mapStateToProps = state => {
     return {
@@ -18,6 +19,11 @@ const mapStateToProps = state => {
         leaders: state.leaders,
     }
 };
+
+const mapDispatchToProps = (dispatch) => ({
+    addComment: (dishId, rating, author, comment) => 
+        dispatch(addComment(dishId, rating, author, comment)),
+});
 
 class Main extends Component {
     render() {
@@ -41,6 +47,7 @@ class Main extends Component {
                     comments={this.props.comments.filter(comm => 
                         comm.dishId === parseInt(dishId, 10))
                     }
+                    addComment={this.props.addComment}
                 />
             );
         };
@@ -62,4 +69,4 @@ class Main extends Component {
     }
 }
 
-export default withRouter(connect(mapStateToProps)(Main));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Main));

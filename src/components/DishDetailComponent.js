@@ -57,7 +57,7 @@ class CommentForm extends Component {
     }
 
     handleSubmit(values) {
-        alert(JSON.stringify(values));
+        this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
     }
 
     render() {
@@ -124,7 +124,7 @@ class CommentForm extends Component {
     }
 }
 
-function DishDetail({ dish, comments }) {
+function DishDetail({ dish, comments, addComment }) {
     const [isCommentModalOpen, setModal] = React.useState(false);
     const toggleCommentModal = () => setModal(!isCommentModalOpen);
 
@@ -144,14 +144,20 @@ function DishDetail({ dish, comments }) {
                     </Breadcrumb>
                 </div>
                 <DishSection dish={dish} />
-                <CommentSection comments={comments} toggleCommentModal={toggleCommentModal} />
+                <CommentSection 
+                    comments={comments} 
+                    toggleCommentModal={toggleCommentModal}
+                />
             </div>
             <Modal isOpen={isCommentModalOpen} toggle={toggleCommentModal}>
                 <ModalHeader toggle={toggleCommentModal}>
                     Submit Comment
                 </ModalHeader>
                 <ModalBody>
-                    <CommentForm />
+                    <CommentForm                     
+                        addComment={addComment}
+                        dishId={dish.id}
+                    />
                 </ModalBody>      
             </Modal>
         </div>

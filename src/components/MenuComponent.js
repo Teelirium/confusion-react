@@ -1,6 +1,7 @@
 import React from "react";
 import { Breadcrumb, BreadcrumbItem, Card, CardImg, CardImgOverlay, CardTitle } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { Loading } from "./LoadingComponent";
 
 function MenuItem({ dish }) {
     return (
@@ -18,13 +19,33 @@ function MenuItem({ dish }) {
 function Menu(props) {
     // every item in a list needs a key
     // since html elements must be unqiue
-    const menu = props.dishes.map(dish => {
+    const menu = props.dishes.dishes.map(dish => {
         return (
             <div key={dish.id} className="col-12 col-md-5 m-2">
                 <MenuItem dish={dish}/>
             </div> 
         );
     });
+
+    if (props.dishes.isLoading) {
+        return (            
+            <div className="container">
+                <div className="row">
+                    <Loading/>
+                </div>
+            </div>
+        );
+    }
+    if (props.dishes.errorMsg) {
+        return (
+            <div className="container">
+                <div className="row">
+                    <h4>{props.dishes.errorMsg}</h4>
+                </div>
+            </div>
+        );
+    }
+
     return (                
         <div className="container">
             <div className="row">

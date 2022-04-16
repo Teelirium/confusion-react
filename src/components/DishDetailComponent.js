@@ -6,6 +6,7 @@ import {
 import { Link } from 'react-router-dom';
 import React, { Component } from "react";
 import { Control, LocalForm, Errors } from "react-redux-form";
+import { Loading } from "./LoadingComponent";
 
 function CommentSection({ comments, toggleCommentModal }) {
     if (!comments) return (<div></div>);
@@ -124,11 +125,32 @@ class CommentForm extends Component {
     }
 }
 
-function DishDetail({ dish, comments, addComment }) {
+function DishDetail(props) {
     const [isCommentModalOpen, setModal] = React.useState(false);
     const toggleCommentModal = () => setModal(!isCommentModalOpen);
 
-    if (!dish) return (<div></div>);
+    const { dish, comments, addComment } = props;
+    if (props.isLoading) {
+        return (
+            <div className="container">
+                <div className="row">
+                    <Loading/>
+                </div>
+            </div>
+        );
+    }
+    else if (props.errorMsg) {
+        return (
+            <div className="container">
+                <div className="row">
+                    <h4>props.errorMsg</h4>
+                </div>
+            </div>
+        );    
+    }
+    else if (!dish) {
+        return (<div></div>);
+    }
 
     return (
         <div className="container">

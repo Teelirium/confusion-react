@@ -1,7 +1,19 @@
 import React from "react";
 import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle } from 'reactstrap';
+import { Loading } from "./LoadingComponent";
 
-function FeaturedCard({item}) {
+function FeaturedCard(props) {
+    const {item, isLoading, errorMsg} = props;
+    if (isLoading) {
+        return (
+            <Loading/>
+        );
+    }
+    else if (errorMsg) {
+        return (
+            <h4>{errorMsg}</h4>
+        );
+    }
     return (
         <Card>
             <CardImg src={item.image} alt={item.name}/>
@@ -19,10 +31,17 @@ function Home(props) {
         <div className="container">
             <div className="row align-items-start">
                 <div className="col-12 col-md m-1">
-                    <FeaturedCard item={props.dish}/>
+                    <FeaturedCard 
+                    item={props.dish}
+                    isLoading={props.dishesLoading}
+                    errorMsg={props.dishesErrorMsg}
+                    />
                 </div>
                 <div className="col-12 col-md m-1">
-                    <FeaturedCard item={props.promotion}/>
+                    <FeaturedCard 
+                    item={props.promotion}
+                    isLoading={props.isLoading}
+                    />
                 </div>        
                 <div className="col-12 col-md m-1">
                     <FeaturedCard item={props.leader}/>

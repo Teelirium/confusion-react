@@ -8,6 +8,7 @@ import React, { Component } from "react";
 import { Control, LocalForm, Errors } from "react-redux-form";
 import { Loading } from "./LoadingComponent";
 import {baseUrl} from '../shared/baseUrl';
+import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 
 function CommentSection({ comments, toggleCommentModal }) {
     if (!comments) return (<div></div>);
@@ -19,18 +20,24 @@ function CommentSection({ comments, toggleCommentModal }) {
             day: '2-digit',
         };
         return (
+            <Fade in>
             <div className="mb-4" key={comment.id}>
                 <div className="mb-3">{comment.comment}</div>
                 <div>
                     -- {comment.author}, {new Intl.DateTimeFormat('en-US', dateFormat).format(date)}
                 </div>
             </div>
+            </Fade>
         );
     });
     return (
         <div className="col-12 col-md-5 m-1">
             <h4>Comments</h4>
-            <div>{commentSection}</div>
+            <div>
+                <Stagger in>
+                    {commentSection}
+                </Stagger>
+            </div>
             <Button outline onClick={toggleCommentModal}>
                 <span className="fa fa-lg fa-pencil"></span> Submit Comment
             </Button>
@@ -41,6 +48,7 @@ function CommentSection({ comments, toggleCommentModal }) {
 function DishSection({ dish }) {
     return (
         <div className="col-12 col-md-5 m-1">
+            <FadeTransform in transformProps={{exitTransform: 'scale(0.5) translateY(-50%)'}}>
             <Card>
                 <CardImg width="100%" src={baseUrl + dish.image} alt={dish.name} />
                 <CardBody>
@@ -48,6 +56,7 @@ function DishSection({ dish }) {
                     <CardText>{dish.description}</CardText>
                 </CardBody>
             </Card>
+            </FadeTransform>
         </div>
     );
 }

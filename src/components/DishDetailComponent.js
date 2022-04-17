@@ -59,7 +59,7 @@ class CommentForm extends Component {
     }
 
     handleSubmit(values) {
-        this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
+        this.props.postComment(this.props.dishId, values.rating, values.author, values.comment);
     }
 
     render() {
@@ -130,7 +130,7 @@ function DishDetail(props) {
     const [isCommentModalOpen, setModal] = React.useState(false);
     const toggleCommentModal = () => setModal(!isCommentModalOpen);
 
-    const { dish, comments, addComment } = props;
+    const { dish, comments, postComment } = props;
     if (props.isLoading) {
         return (
             <div className="container">
@@ -178,7 +178,7 @@ function DishDetail(props) {
                 </ModalHeader>
                 <ModalBody>
                     <CommentForm                     
-                        addComment={addComment}
+                        postComment={postComment}
                         dishId={dish.id}
                     />
                 </ModalBody>      

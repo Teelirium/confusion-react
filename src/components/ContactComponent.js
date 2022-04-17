@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Breadcrumb, BreadcrumbItem, Button, Col, Row, Label } from "reactstrap";
 import { Link } from 'react-router-dom';
-import { Control, Form, Errors, actions } from 'react-redux-form';
+import { Control, Form, Errors } from 'react-redux-form';
 
 const required = val => val && val.length;
 const maxLength = len => val => !val || (val.length <= len);
@@ -16,7 +16,7 @@ class Contact extends Component {
     }
 
     handleSubmit(values) {
-        alert(JSON.stringify(values));
+        this.props.postFeedback(values);
         this.props.resetFeedbackForm();
     }
 
@@ -78,7 +78,7 @@ class Contact extends Component {
                                         placeholder='First Name'
                                         validators={{
                                             required, 
-                                            minLength: minLength(3),
+                                            minLength: minLength(2),
                                             maxLength: maxLength(15),
                                         }} 
                                     />
@@ -101,7 +101,7 @@ class Contact extends Component {
                                         placeholder='Last Name'
                                         validators={{
                                             required, 
-                                            minLength: minLength(3),
+                                            minLength: minLength(2),
                                             maxLength: maxLength(15),
                                         }} 
                                     />
@@ -124,7 +124,7 @@ class Contact extends Component {
                                         placeholder='Tel. Number'
                                         validators={{
                                             required, 
-                                            minLength: minLength(3),
+                                            minLength: minLength(2),
                                             maxLength: maxLength(15),
                                             isNumber,
                                         }} 

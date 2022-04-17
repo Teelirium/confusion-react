@@ -1,8 +1,8 @@
 import React from "react";
-import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle } from 'reactstrap';
-import { Loading } from "./LoadingComponent";
-import {baseUrl} from '../shared/baseUrl';
 import { FadeTransform } from 'react-animation-components';
+import { Card, CardBody, CardImg, CardSubtitle, CardText, CardTitle } from 'reactstrap';
+import { baseUrl } from '../shared/baseUrl';
+import { Loading } from "./LoadingComponent";
 
 function FeaturedCard(props) {
     const {item, isLoading, errorMsg} = props;
@@ -49,7 +49,11 @@ function Home(props) {
                     />
                 </div>        
                 <div className="col-12 col-md m-1">
-                    <FeaturedCard item={props.leader}/>
+                    <FeaturedCard 
+                    item={props.leader}
+                    isLoading={props.leadersLoading}
+                    errorMsg={props.leadersErrorMsg}                    
+                    />
                 </div>      
             </div>
         </div>

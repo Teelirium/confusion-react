@@ -67,26 +67,19 @@ class Main extends Component {
     }
 
     const DishWithId = ({match}) => {
-      return(
-        this.props.auth.isAuthenticated
-        ?
+      let isFavorite = false;
+      if (this.props.auth.isAuthenticated && this.props.favorites.favorites != null) {
+        isFavorite = this.props.favorites
+          .favorites.dishes.some((dish) => dish._id === match.params.dishId);
+      }
+      return (
         <DishDetail dish={this.props.dishes.dishes.filter((dish) => dish._id === match.params.dishId)[0]}
           isLoading={this.props.dishes.isLoading}
           errMess={this.props.dishes.errMess}
           comments={this.props.comments.comments.filter((comment) => comment.dish === match.params.dishId)}
           commentsErrMess={this.props.comments.errMess}
           postComment={this.props.postComment}
-          favorite={this.props.favorites.favorites.dishes.some((dish) => dish._id === match.params.dishId)}
-          postFavorite={this.props.postFavorite}
-          />
-        :
-        <DishDetail dish={this.props.dishes.dishes.filter((dish) => dish._id === match.params.dishId)[0]}
-          isLoading={this.props.dishes.isLoading}
-          errMess={this.props.dishes.errMess}
-          comments={this.props.comments.comments.filter((comment) => comment.dish === match.params.dishId)}
-          commentsErrMess={this.props.comments.errMess}
-          postComment={this.props.postComment}
-          favorite={false}
+          favorite={isFavorite}
           postFavorite={this.props.postFavorite}
           />
       );
@@ -113,7 +106,7 @@ class Main extends Component {
           <CSSTransition key={this.props.location.key} classNames="page" timeout={300}>
             <Switch>
               <Route path="/home" component={HomePage} />
-              <Route exact path='/aboutus' component={() => <About leaders={this.props.leaders} />} />} />
+              <Route exact path='/aboutus' component={() => <About leaders={this.props.leaders} />} />
               <Route exact path="/menu" component={() => <Menu dishes={this.props.dishes} />} />
               <Route path="/menu/:dishId" component={DishWithId} />
               <PrivateRoute exact path="/favorites" component={() => <Favorites favorites={this.props.favorites} deleteFavorite={this.props.deleteFavorite} />} />

@@ -8,7 +8,8 @@ import { Fade, Stagger } from 'react-animation-components';
 function RenderLeader({leader}) {
     return(
         <div className='d-flex mb-4'>
-            <img className='flex-shrink-0 align-self-start' src={baseUrl + leader.image}></img>
+            <img className='flex-shrink-0 align-self-start' 
+            src={baseUrl + leader.image} alt={leader.name}></img>
             <div className='flex-grow-1 ms-5'>
                 <h4>{leader.name}</h4>
                 <div className='mb-3'>{leader.designation}</div>

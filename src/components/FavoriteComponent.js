@@ -74,7 +74,7 @@ const Favorites = (props) => {
     else {
         return(
             <div className="container">
-                <div className="row">
+                <div className="row m-4">
                     <h4>You have no favorites</h4>
                 </div>
             </div>

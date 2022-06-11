@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import { Redirect, Route, Switch, useParams } from 'react-router-dom';
+import { Redirect, Route, Switch, useParams, HashRouter } from 'react-router-dom';
 import { postComment, postFeedback, 
     fetchDishes, fetchComments, 
     fetchPromos, fetchLeaders } from '../redux/ActionCreators';
